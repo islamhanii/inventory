@@ -1,0 +1,215 @@
+{
+  "info": {
+    "_postman_id": "e20cab43-de2c-419b-81e8-cc4b093013b3",
+    "name": "Product Inventory Microservice",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "16583846"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "per_page",
+                  "value": "50",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single Product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products/show/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products",
+                "show",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "019daf86-1751-72d5-b541-c4452636a104"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"SKU-002\",\n  \"name\": \"Test Product\",\n  \"description\": \"Sample product\",\n  \"price\": 100.50,\n  \"stock_quantity\": 50,\n  \"low_stock_threshold\": 10,\n  \"status\": \"active\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"sku\": \"SKU-002\",\n    \"name\": \"Updated Product\",\n    \"description\": \"Updated description\",\n    \"price\": 150.00,\n    \"stock_quantity\": 30,\n    \"low_stock_threshold\": 5,\n    \"status\": \"active\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "019daf86-1751-72d5-b541-c4452636a104"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products/:id",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "019daf86-1751-72d5-b541-c4452636a104"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Stock",
+      "item": [
+        {
+          "name": "Adjust Stock",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"quantity\": -20\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/products/:id/adjust-stock",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products",
+                ":id",
+                "adjust-stock"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "019daf86-1751-72d5-b541-c4452636a104"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Low Stock Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/products/low-stock",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "products",
+                "low-stock"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000/api"
+    }
+  ]
+}
