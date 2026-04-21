@@ -13,7 +13,7 @@ class ProductService
     public function getPaginatedProducts(int $page = 1, int $perPage = 10)
     {
         $products = Cache::remember(
-            'products_page_' . $page,
+            'products_page_' . $page . '_per_page_' . $perPage,
             60,
             fn() => Product::paginate($perPage)
         );

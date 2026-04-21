@@ -53,27 +53,27 @@ class ProductController extends Controller
 
     /*-----------------------------------------------------------------------------------------*/
 
-    public function update(UpdateProductRequest $request)
+    public function update($id, UpdateProductRequest $request)
     {
-        $product = $this->productService->updateProduct($request->id, $request->safe()->except('id'));
+        $product = $this->productService->updateProduct($id, $request->safe()->except('id'));
 
         return $this->apiResponse(200, null, new ProductResource($product));
     }
 
     /*-----------------------------------------------------------------------------------------*/
 
-    public function destroy(DeleteProductRequest $request)
+    public function destroy($id)
     {
-        $this->productService->deleteProduct($request->id);
+        $this->productService->deleteProduct($id);
 
         return $this->apiResponse(204);
     }
 
     /*-----------------------------------------------------------------------------------------*/
 
-    public function adjustStock(AdjustProductStockRequest $request)
+    public function adjustStock($id, AdjustProductStockRequest $request)
     {
-        $product = $this->productService->adjustStock($request->id, $request->quantity);
+        $product = $this->productService->adjustStock($id, $request->quantity);
 
         return $this->apiResponse(200, null, new ProductResource($product));
     }

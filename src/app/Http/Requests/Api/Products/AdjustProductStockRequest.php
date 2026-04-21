@@ -28,7 +28,6 @@ class AdjustProductStockRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|exists:products,id',
             'quantity' => [
                 'required',
                 'integer',
